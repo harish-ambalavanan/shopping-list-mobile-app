@@ -27,7 +27,13 @@ onValue(shoppingListInDB, function(snapshot){
 })
 
 addButtonEl.addEventListener("click", function() {
-    let inputValue = inputFieldEl.value
+    let inputValue = inputFieldEl.value.trim()
+    console.log("Input Value:", inputValue)
+    if(!inputValue){
+        console.log("User entered nothing")
+        alert("please enter valid value")
+        return
+    }
     push(shoppingListInDB, inputValue)
     clearInputField()
     // appendItemToShoppingListEl(inputValue)
@@ -56,7 +62,7 @@ function appendItemToShoppingListEl(itemEntry){
     liNode.addEventListener('click', function(){
         const exactLocationOfItemInDB = ref(database, "shoppingList/"+itemID)
         // console.log(exactLocationOfItemInDB)
-        remove(exactLocationOfItemInDB)
         shoppingListEl.removeChild(liNode)
+        remove(exactLocationOfItemInDB)
     })
 }
