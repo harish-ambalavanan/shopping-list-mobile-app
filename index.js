@@ -53,7 +53,7 @@ function appendItemToShoppingListEl(itemEntry){
     liNode.textContent = itemValue
     console.log(liNode)
     shoppingListEl.appendChild(liNode)
-    liNode.addEventListener('dblclick', function(){
+    liNode.addEventListener('click', function(){
         const exactLocationOfItemInDB = ref(database, "shoppingList/"+itemID)
         // console.log(exactLocationOfItemInDB)
         remove(exactLocationOfItemInDB)
